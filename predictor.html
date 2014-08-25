@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+		<script src="kimono-main.min.js"></script>
+		<script src="js/knob.min.js"></script>
+		<script src="c3.min.js"></script>
+		<script src="charts.js"></script>
+        <script src="js/flags.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="kimono-main.min.css">
+		<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/c3/0.1.29/c3.css">
+		<style>
+			.select1{
+				padding-top: 30px;
+				padding-bottom: 40px;
+			}
+
+			img.octopus {
+				height: 60px;
+			}
+
+
+			.c3 text {
+				fill: white;
+			}
+
+			p.data-label {
+				padding-bottom: 10px;
+			}
+
+			div.data-column {
+				text-align: center;
+			}
+
+			p.small {
+				font-size: 12px;
+			}
+
+			div.push-over-2 {
+				margin-left: 1.5%;
+			}
+
+			a.oct-link {
+				display: block;
+			}
+			div.winner {
+				padding-left: 2.2%;
+			}
+
+
+
+		</style>
+
+	</head>
+
+	<body>
+		<section id="Wrap" class="btc-wrap">
+			<div id="Explorer" class="container bitcoin">
+				<div class="row">
+					<div class="col-md-9 intro">
+						<h1>World Cup Predictor</h1>
+						<p class="first-para">
+							A couple weeks ago, Kimono introduced our <a>World Cup API</a> to the world. In the past few weeks, we've seen some awesome hacks built using our API, like this one and this one. We've put together a simple World Cup predictor using our own API below. Enjoy!
+						</p>
+						<p>
+							Select two teams below and we'll predict the winner of the match. One of our founders is a quantum physicist but we still can't guarantee 100% accuracy. Maybe you can use Kimono to do better?
+						</p>
+					</div>
+					<div class="col-md-3">
+						<div class="row" style="margin-top: 58px;"><div class="col-md-3"><img src="ezimba.gif" class="octopus"></div><div class="col-md-8">This is our <a href="http://en.wikipedia.org/wiki/Paul_the_Octopus" target="_blank" class="oct-link">magic octopus.</a></div></div>
+						<a class="new-user-cta pull-left special" href="/signup" target="_self" style="margin-top: 18px;">New to kimono? Make your own APIs out of anything. <strong>Signup for free</strong> <span class="glyphicon glyphicon-chevron-right"></span></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<p class="small">We found the 3 factors that correlate with victory most are total goals and number of red cards of a teams' players last season, as well as a momentum factor based on World Cup match results. Feel free to adjust these factors and others by moving the toggles to the right.</p>
+					</div>
+					<div class="col-md-6 push-over-2">
+						<div class="row">
+							<div class="col-md-4 data-column">
+								<p class="data-label first-para">Team Goals Factor</p>
+								<input type="text" class="dial dial-tg" value="50" data-width="60" data-height="60" data-skin="tron" data-thickness=".08" data-angleOffset="180" data-fgColor="#1f77b4">
+							</div>
+
+							<div class="col-md-4 data-column">
+								<p class="data-label first-para">Minutes Factor</p>
+								<input type="text" class="dial dial-min" value="0" data-width="60" data-height="60" data-skin="tron" data-thickness=".08" data-angleOffset="180" data-fgColor="rgb(255, 127, 14)">
+							</div>
+
+							<div class="col-md-4 data-column">
+								<p class="data-label first-para">Yellow Card Factor</p>
+								<input type="text" class="dial dial-y" value="0" data-width="60" data-height="60" data-skin="tron" data-thickness=".08" data-angleOffset="180" data-fgColor="#1f77b4">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 data-column">
+								<p class="data-label first-para">Cohesion Factor</p>
+								<input type="text" class="dial dial-c" value="0" data-width="60" data-height="60" data-skin="tron" data-thickness=".08" data-angleOffset="180" data-fgColor="rgb(255, 127, 14)">
+							</div>
+
+							<div class="col-md-4 data-column">
+								<p class="data-label first-para">Momentum Factor</p>
+								<input type="text" class="dial dial-m" value="50" data-width="60" data-height="60" data-skin="tron" data-thickness=".08" data-angleOffset="180" data-fgColor="#1f77b4">
+							</div>
+
+							<div class="col-md-4 data-column">
+								<p class="data-label first-para">Red Card Factor</p>
+								<input type="text" class="dial dial-rc" value="50" data-width="60" data-height="60" data-skin="tron" data-thickness=".08" data-angleOffset="180" data-fgColor="rgb(255, 127, 14)">
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="row select1">
+							<div class="col-md-8">
+								<select class="form-control input-sm" id="team1"><option value="1">Algeria</option><option value="2">Argentina</option><option value="3">Australia</option><option value="4">Belgium</option><option value="5">Bosnia-Herzegovina</option><option value="6">Brazil</option><option value="7">Cameroon</option><option value="8">Chile</option><option value="9">Colombia</option><option value="10">Costa Rica</option><option value="11">Côte d'Ivoire</option><option value="12">Croatia</option><option value="13">Ecuador</option><option value="14">England</option><option value="15">France</option><option value="16" selected="selected">Germany</option><option value="17">Ghana</option><option value="18">Greece</option><option value="19">Honduras</option><option value="20">Iran</option><option value="21">Italy</option><option value="22">Japan</option><option value="23">Korea Republic</option><option value="24">Mexico</option><option value="25">Netherlands</option><option value="26">Nigeria</option><option value="27">Portugal</option><option value="28">Russia</option><option value="29">Spain</option><option value="30">Switzerland</option><option value="31">United States</option><option value="32">Uruguay</option></select>
+							</div>
+							<div class="col-md-4" id="team1flag">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-8">
+								<select class="form-control input-sm" id="team2"><option value="1">Algeria</option><option value="2">Argentina</option><option value="3">Australia</option><option value="4">Belgium</option><option value="5">Bosnia-Herzegovina</option><option value="6" selected="selected">Brazil</option><option value="7">Cameroon</option><option value="8">Chile</option><option value="9">Colombia</option><option value="10">Costa Rica</option><option value="11">Côte d'Ivoire</option><option value="12">Croatia</option><option value="13">Ecuador</option><option value="14">England</option><option value="15">France</option><option value="16">Germany</option><option value="17">Ghana</option><option value="18">Greece</option><option value="19">Honduras</option><option value="20">Iran</option><option value="21">Italy</option><option value="22">Japan</option><option value="23">Korea Republic</option><option value="24">Mexico</option><option value="25">Netherlands</option><option value="26">Nigeria</option><option value="27">Portugal</option><option value="28">Russia</option><option value="29">Spain</option><option value="30">Switzerland</option><option value="31">United States</option><option value="32">Uruguay</option></select>
+							</div>
+							<div class="col-md-4" id="team2flag">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div id="chart"></div>
+					</div>
+					<div class="col-md-3 winner">
+						<div id="winner"></div>
+					</div>
+				</div>
+				
+			</div>
+		</section>
+	</body>
+</html>
